@@ -1,0 +1,15 @@
+numpy
+pandas
+scipy
+scikit-learn
+joblib
+sentence-transformers
+transformers
+huggingface-hub
+typing-extensions
+jieba
+tqdm
+accelerate
+kurigram
+matplotlib
+seaborn
