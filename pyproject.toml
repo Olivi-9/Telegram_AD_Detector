@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telegram-ad-detector"
+version = "0.1.0"
+description = "Telegram advertising detector bot and training utilities"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pandas",
+  "scipy",
+  "scikit-learn",
+  "joblib",
+  "sentence-transformers",
+  "transformers",
+  "huggingface-hub",
+  "typing-extensions",
+  "jieba",
+  "tqdm",
+  "accelerate",
+  "kurigram",
+  "matplotlib",
+  "seaborn",
+]
+
+[project.scripts]
+telegram-ad-bot = "telegram_ad_detector.cli:bot"
+telegram-ad-predict = "telegram_ad_detector.cli:predict"
+telegram-ad-train = "telegram_ad_detector.cli:train"
+
+[tool.setuptools]
+py-modules = [
+  "ad_bot",
+  "bot_config",
+  "change_row",
+  "clean_chat_log",
+  "clean_short_rows",
+  "data",
+  "detection_engine",
+  "main",
+  "noise",
+  "predict",
+  "test_pytorch",
+  "user_state",
+  "visualize_svm",
+]
+
+[tool.setuptools.packages.find]
+include = ["telegram_ad_detector*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

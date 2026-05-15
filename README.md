@@ -136,8 +136,7 @@
 建议 Python 3.10+，推荐使用 uv：
 
 ```bash
-uv v
-uv pip install -r requirements.txt
+uv sync
 ```
 
 ### 6.2 配置环境变量
@@ -155,7 +154,7 @@ TELEGRAM_API_HASH=your_api_hash
 ### 6.3 训练模型（首次或重训时）
 
 ```bash
-uv run main.py
+uv run telegram-ad-train
 ```
 
 训练完成后应生成：
@@ -168,22 +167,35 @@ uv run main.py
 ### 6.4 启动 Bot
 
 ```bash
-python ad_bot.py
+uv run telegram-ad-bot
 ```
 
 ### 6.5 单机推理测试
 
 ```bash
-python predict.py
+uv run telegram-ad-predict
 ```
 
 ### 6.6 测试 Pytorch 是否可用
 
 ```bash
-uv run test_pytorch.py
+uv run python test_pytorch.py
 ```
 
-## 7. 管理命令
+### 6.7 代码测试
+
+```bash
+uv run python -m unittest discover -s tests -v
+```
+
+## 7. 推荐目录结构
+
+- `telegram_ad_detector/`：`uv` 启动入口与后续可扩展的包代码
+- `tests/`：基础烟雾测试
+- `artifacts/`：后续建议放置训练产物、导出模型和临时结果
+- 根目录脚本：保留现有实现，兼容旧的直接运行方式
+
+## 8. 管理命令
 
 常用群内命令：
 
@@ -197,7 +209,7 @@ uv run test_pytorch.py
 - `/ad_whitelist remove <user_id>`：移除白名单用户（管理员）
 - `/ad_whitelist list`：查看白名单（管理员）
 
-## 8. 关键配置项（`bot_config.py`）
+## 9. 关键配置项（`bot_config.py`）
 
 - 运行模式
         - `DRY_RUN`：只分析不执行动作
@@ -216,7 +228,7 @@ uv run test_pytorch.py
         - `MONITOR_KICK_THRESHOLD`
         - `WARN_KICK_THRESHOLD`
 
-## 9. 持久化与产物说明
+## 10. 持久化与产物说明
 
 - `bot_user_states.json`：用户状态（自动生成）
 - `group_whitelist.json`：群白名单（自动生成，可手改）

@@ -4,6 +4,7 @@ __pycache__/
 *.pkl
 *.log
 *.session
+*.egg-info/
 .env
 bot_user_states.json
 ad_detector_bot.session-journal
