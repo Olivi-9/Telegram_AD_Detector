@@ -670,14 +670,10 @@ wheels = [
 [[package]]
 name = "kurigram"
 version = "2.2.22"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/KurimuzonAkuma/kurigram?rev=dev#5e333acb9acf003d0d97c982b6c2790c444c21ec" }
 dependencies = [
     { name = "pyaes" },
     { name = "python-socks", extra = ["asyncio"] },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/49/72/6e7098040fc2fa876c06b314bb6af9290d521276d93ce0e00833985ccb89/kurigram-2.2.22.tar.gz", hash = "sha256:b19a462b0c91b1f594f84e1b65e1c1c8010748f86d5b9a4279d7b6e4dfb021ef", size = 575603, upload-time = "2026-04-17T21:33:47.428Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/44/3d6a84df70aa1fa3ab9940b32f0ea309c6c818062ad39709c39dc830e08f/kurigram-2.2.22-py3-none-any.whl", hash = "sha256:de1a7d787bd3727d930e600e6b4aae3189f85ddc47dd8ecacd5415a5157d812c", size = 5598390, upload-time = "2026-04-17T21:33:45.091Z" },
 ]
 
 [[package]]
@@ -2105,7 +2101,7 @@ requires-dist = [
     { name = "huggingface-hub" },
     { name = "jieba" },
     { name = "joblib" },
-    { name = "kurigram" },
+    { name = "kurigram", git = "https://github.com/KurimuzonAkuma/kurigram?rev=dev" },
     { name = "matplotlib" },
     { name = "numpy" },
     { name = "pandas" },

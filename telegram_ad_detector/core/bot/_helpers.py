@@ -57,6 +57,14 @@ def is_duplicate_message(message: Message, is_edited: bool = False) -> bool:
     return False
 
 
+def is_guest_bot_message(message: Message) -> bool:
+    """Check whether a message was sent by a guest bot."""
+    return bool(
+        getattr(message, "guest_bot_caller_user", None)
+        or getattr(message, "guest_bot_caller_chat", None)
+    )
+
+
 def should_skip_group_message(message: Message, is_edited: bool) -> bool:
     """Determine whether a group message should be skipped.
 

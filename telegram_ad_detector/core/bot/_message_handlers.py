@@ -15,6 +15,7 @@ from ._actions import execute_action, send_debug_report
 from ._formatting import describe_message_payload, format_bio_for_log, format_debug_report, format_message_text
 from ._helpers import (
     is_duplicate_message,
+    is_guest_bot_message,
     should_skip_group_message,
     try_get_member_joined_date,
     try_get_user_bio,
@@ -47,6 +48,18 @@ async def _process_group_message(
     message: Message, is_edited: bool = False
 ) -> None:
     """Handle group messages for both new and edited messages."""
+    if is_guest_bot_message(message):
+        logger.info(
+            "检测到 guest_bot 消息，自动删除 | chat_id=%s, message_id=%s",
+            message.chat.id if message.chat else "N/A",
+            message.id,
+        )
+        try:
+            await message.delete()
+        except Exception as exc:
+            logger.warning("删除 guest_bot 消息失败: %s", exc)
+        return
+
     if should_skip_group_message(message, is_edited=is_edited):
         return
 

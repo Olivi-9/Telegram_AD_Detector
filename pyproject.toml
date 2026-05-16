@@ -21,7 +21,7 @@ dependencies = [
   "jieba",
   "tqdm",
   "accelerate",
-  "kurigram",
+  "kurigram @ git+https://github.com/KurimuzonAkuma/kurigram@dev",
   "matplotlib",
   "seaborn",
 ]
