@@ -12,7 +12,12 @@ from ..config import config
 from ..detection import get_detection_engine
 from ..user_state import get_state_manager
 from ._actions import execute_action, send_debug_report
-from ._formatting import describe_message_payload, format_bio_for_log, format_debug_report, format_message_text
+from ._formatting import (
+    describe_message_payload,
+    format_bio_for_log,
+    format_debug_report,
+    format_message_text,
+)
 from ._helpers import (
     is_duplicate_message,
     is_guest_bot_message,
@@ -44,9 +49,7 @@ class PyrogramUpdateAdapter:
         self.message = message
 
 
-async def _process_group_message(
-    message: Message, is_edited: bool = False
-) -> None:
+async def _process_group_message(message: Message, is_edited: bool = False) -> None:
     """Handle group messages for both new and edited messages."""
     if is_guest_bot_message(message):
         logger.info(
@@ -109,8 +112,7 @@ async def _process_group_message(
                 )
 
         logger.info(
-            "%s检测用户 %s (新成员=%s) 的消息 | chat_id=%s, message_id=%s, "
-            "text=%r, bio=%r",
+            "%s检测用户 %s (新成员=%s) 的消息 | chat_id=%s, message_id=%s, " "text=%r, bio=%r",
             edited_tag,
             user_id,
             user_state.is_new_member,

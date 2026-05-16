@@ -193,7 +193,9 @@ class UserStateManager:
     def save(self) -> None:
         """Persist user states to disk."""
         try:
-            data = {str(user_id): asdict(state) for user_id, state in self.users.items()}
+            data = {
+                str(user_id): asdict(state) for user_id, state in self.users.items()
+            }
 
             with open(self.storage_file, "w", encoding="utf-8") as handle:
                 json.dump(data, handle, ensure_ascii=False, indent=2)

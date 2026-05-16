@@ -89,9 +89,7 @@ def interactive_mode(
                     print("-" * 60)
 
                     ad_count = sum(1 for _, r, _ in results if r == "广告")
-                    print(
-                        f"\n统计: 广告 {ad_count} 条 | 正常 {len(results) - ad_count} 条\n"
-                    )
+                    print(f"\n统计: 广告 {ad_count} 条 | 正常 {len(results) - ad_count} 条\n")
                 continue
 
             result, confidence = predict_text(

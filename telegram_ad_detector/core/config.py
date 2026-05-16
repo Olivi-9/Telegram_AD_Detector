@@ -7,40 +7,11 @@ from dataclasses import dataclass
 from typing import Iterable
 
 
-def _load_env_file(env_path: str | None = None) -> None:
-    """Load key=value pairs from a .env file into environment variables.
+from dotenv import find_dotenv, load_dotenv
 
-    Args:
-        env_path: Optional path to a .env file. Defaults to a sibling .env.
-    """
-    if env_path is None:
-        env_path = os.path.join(os.path.dirname(__file__), ".env")
-
-    if not os.path.exists(env_path):
-        return
-
-    try:
-        with open(env_path, "r", encoding="utf-8") as env_file:
-            for line in env_file:
-                raw = line.strip()
-                if not raw or raw.startswith("#"):
-                    continue
-                if raw.startswith("export "):
-                    raw = raw[len("export ") :].strip()
-                if "=" not in raw:
-                    continue
-                key, value = raw.split("=", 1)
-                key = key.strip()
-                if not key:
-                    continue
-                value = value.strip()
-                os.environ.setdefault(key, value)
-    except (OSError, UnicodeDecodeError):
-        # Ignore .env loading errors to avoid blocking startup.
-        return
-
-
-_load_env_file()
+_dotenv_path = find_dotenv(usecwd=True)
+if _dotenv_path:
+    load_dotenv(_dotenv_path, override=False)
 
 
 def _get_first_env(var_names: Iterable[str]) -> str:

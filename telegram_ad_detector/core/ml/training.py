@@ -9,7 +9,12 @@ from scipy.sparse import csr_matrix, hstack
 from sentence_transformers import SentenceTransformer
 from sklearn.base import TransformerMixin
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import classification_report, confusion_matrix, f1_score, make_scorer
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    f1_score,
+    make_scorer,
+)
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.pipeline import FeatureUnion
 from sklearn.svm import LinearSVC
@@ -46,7 +51,9 @@ def split_data(
     random_state: int = 42,
 ) -> tuple[list[str], list[str], list[int], list[int]]:
     """Split the dataset into train/test sets."""
-    return train_test_split(texts, labels, test_size=test_size, random_state=random_state)
+    return train_test_split(
+        texts, labels, test_size=test_size, random_state=random_state
+    )
 
 
 def build_vectorizers() -> FeatureUnion:
@@ -172,7 +179,9 @@ def train_model(x_train_final: csr_matrix, y_train: list[int]) -> GridSearchCV:
     return grid_search
 
 
-def evaluate_model(model: LinearSVC, x_test_final: csr_matrix, y_test: list[int]) -> None:
+def evaluate_model(
+    model: LinearSVC, x_test_final: csr_matrix, y_test: list[int]
+) -> None:
     """Evaluate the trained model and print metrics."""
     y_pred = model.predict(x_test_final)
 

@@ -39,9 +39,12 @@ class MLDetector:
             from ..ml.inference import load_model
 
             logger.info("正在加载 ML 模型...")
-            self.model, self.tfidf_vectorizer, self.embedding_model, emb_w = (
-                load_model()
-            )
+            (
+                self.model,
+                self.tfidf_vectorizer,
+                self.embedding_model,
+                emb_w,
+            ) = load_model()
             self.emb_weight = emb_w if emb_w is not None else 1.0
 
             if all([self.model, self.tfidf_vectorizer, self.embedding_model]):

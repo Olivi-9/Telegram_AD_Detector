@@ -45,7 +45,9 @@ def is_duplicate_message(message: Message, is_edited: bool = False) -> bool:
     key = (message.chat.id, message.id, is_edited)
 
     expired_keys = [
-        k for k, ts in _recent_message_keys.items() if now - ts > _RECENT_MESSAGE_TTL_SECONDS
+        k
+        for k, ts in _recent_message_keys.items()
+        if now - ts > _RECENT_MESSAGE_TTL_SECONDS
     ]
     for key_to_remove in expired_keys:
         _recent_message_keys.pop(key_to_remove, None)
@@ -123,7 +125,9 @@ async def try_get_member_joined_date(
     try:
         chat_member = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
     except RPCError as exc:
-        logger.debug("get_chat_member 失败 (chat_id=%s, user_id=%s): %s", chat_id, user_id, exc)
+        logger.debug(
+            "get_chat_member 失败 (chat_id=%s, user_id=%s): %s", chat_id, user_id, exc
+        )
         return None
 
     return getattr(chat_member, "joined_date", None)

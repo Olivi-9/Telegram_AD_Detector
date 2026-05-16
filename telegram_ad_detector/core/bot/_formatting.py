@@ -95,7 +95,9 @@ def describe_message_payload(message: Message, user_bio: Optional[str] = None) -
     return ", ".join([f"{key}={value}" for key, value in details.items()])
 
 
-def format_debug_report(detection_result: DetectionResult, is_edited: bool = False) -> str:
+def format_debug_report(
+    detection_result: DetectionResult, is_edited: bool = False
+) -> str:
     """Format a debug report for the detection result.
 
     Args:

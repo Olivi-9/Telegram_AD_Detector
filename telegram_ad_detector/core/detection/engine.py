@@ -84,7 +84,9 @@ class DetectionEngine:
             risk_score=risk_score,
         )
 
-    def _calculate_risk_score(self, rule_result: RuleResult, ml_result: MLResult) -> float:
+    def _calculate_risk_score(
+        self, rule_result: RuleResult, ml_result: MLResult
+    ) -> float:
         """Compute a risk score in the range [0, 1]."""
         score = 0.0
 

@@ -11,7 +11,12 @@ from pyrogram.types import Message
 from ..config import config
 from ..user_state import get_state_manager
 from ._actions import reply_with_auto_delete
-from ._helpers import format_joined_date_str, is_admin_status, is_duplicate_message, try_get_member_joined_date
+from ._helpers import (
+    format_joined_date_str,
+    is_admin_status,
+    is_duplicate_message,
+    try_get_member_joined_date,
+)
 from ._whitelist import is_group_whitelisted
 from .app import app
 
@@ -184,9 +189,7 @@ async def cmd_whitelist(client, message: Message) -> None:
         return
     group_id = message.chat.id
     if not is_group_whitelisted(group_id):
-        await reply_with_auto_delete(
-            message, "❌ 此群组未在白名单中\n请联系 Olivi 将群组添加到白名单"
-        )
+        await reply_with_auto_delete(message, "❌ 此群组未在白名单中\n请联系 Olivi 将群组添加到白名单")
         return
 
     try:

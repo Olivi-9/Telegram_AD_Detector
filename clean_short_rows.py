@@ -6,7 +6,6 @@ def clean_csv(input_path: str, output_path: str, min_length: int = 10):
     with open(input_path, newline="", encoding="utf-8") as infile, open(
         output_path, "w", newline="", encoding="utf-8"
     ) as outfile:
-
         reader = csv.reader(infile)
         writer = csv.writer(outfile)
 
